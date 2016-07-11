@@ -6,9 +6,8 @@ imageCropper.controller("ImageCropperCtrl",[ '$scope','$rootScope',function($sco
 					          $scope.myImage='';
 						      $rootScope.myCroppedImage='';
 							  $scope.type='square';
-                            
+                              
     
-						    //Got
 					        var handleFileSelect=function(evt) {
 					          var file=evt.currentTarget.files[0];
 					          var reader = new FileReader();

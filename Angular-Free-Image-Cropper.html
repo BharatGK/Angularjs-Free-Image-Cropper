@@ -1,11 +1,17 @@
 <html ng-app="imageCropper">
 <head>
-    <link rel="stylesheet" href="style.css">
+    <!--For image cropper style-->
+    <link rel="stylesheet" href="css/style.css">
+	 <link rel="stylesheet" href="css/ng-img-crop.css" />
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!--To load bootsrap from maxcdn-->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-    <script src="ng-img-crop.js"></script>
-    <script src="imgCropController.js"></script>
+    <script src="js/vendor/angular.js"></script>
+    <!--image cropper js file-->
+    <script src="js/vendor/imgCrop/ng-img-crop.js"></script>
+    <!--controller to select image to crop-->
+    <script src="js/imgCropController.js"></script>
 </head>
 <body>
    <!-- Crop Image Starts here -->
@@ -18,7 +24,7 @@
     <label><input type="radio" ng-model="type" value="square" /> Square</label>
     <label><input type="radio" ng-model="type" value="rectangle" /> rectangle</label>
     <label><input type="radio" ng-model="type" value="circle" /> Circle</label><br>
-    Image in px size: 320,480,580
+    Image in px size: 340 * 200,480 * 300,680 * 400
     <label><input type="radio" ng-model="type" value="Size" />Size</label>
     <!--<label><input type="radio" ng-model="type" value="rectangle" /> Rectangle</label>-->
   </div><br>
@@ -27,12 +33,12 @@
       <div id="selectImage" class="col-sm-4">
      <div>Select an image file: <input type="file" id="inputRectangleFileId" /></div>
     <div class="cropArea">
-    <img-crop image="myImage" aspect-ratio="1.0" result-image="myCroppedImage" area-type="{{type}}" result-image-size='[{w: 340,h: 200},{w: 680,h: 400}]' result-array-image='myArray'></img-crop>
-   </div><br>
+    <img-crop image="myImage" aspect-ratio="1.0" result-image="myCroppedImage" area-type="{{type}}" result-image-size='[{w: 340,h: 200},{w: 480,h: 300},{w: 680,h: 400}]' result-array-image='myArray'></img-crop>
+   </div>
     </div>
           
-    <div class="col-sm-4" if="">
-   <div>Cropped Image:</div><br>
+    <div class="col-sm-4">
+   <div >Cropped Image:</div>
    <div class="cropped"><img ng-src="{{myCroppedImage}}" id="croppedImage"  ng-if="type=='square'"/></div>
       
    <div class="cropped"><img ng-src="{{myCroppedImage}}" id="croppedCircleImage" ng-if="type=='circle'"/></div>
@@ -43,27 +49,17 @@
           <div class="col-sm-4"></div>
    </div>
       
-    <div class="col-sm-12">
-	<div class="col-sm-4">
-   <div class="cropped"><img ng-src="{{myCroppedImage}}" id="cropped340SizeImage" ng-if="type=='Size'"/></div>
-     </div>
-	 <div class="col-sm-8">
-   <div class="cropped"><img ng-src="{{myCroppedImage}}" id="cropped680SizeImage" ng-if="type=='Size'"/></div>
-   </div>
-   </div>
-      
-   <div class="col-sm-12">
-  <td ng-repeat="cropedObject in myArray">
+          
+<!--Different Resolution--->
+<!--Table must be there to show image else images will not shown-->
+<table>
+  <td ng-repeat="cropedObject in myArray" ng-if="type=='Size'">
     <div>Cropped Image #{{$index + 1}} (size : {{cropedObject.w}}x{{cropedObject.h}} ) in array:</div>
     <div><img ng-src="{{cropedObject.dataURI}}" /></div>
   </td>
-      </div>
-      
-    <div class="col-sm-12" ng-if="type != square && rectangle && circle && Size">
-  {{selectImageMsg}}
-      </div> 
-      
-    </div>	
+</table>
+	  
+ </div>	<!--End of controller-->
     
 </div>
  

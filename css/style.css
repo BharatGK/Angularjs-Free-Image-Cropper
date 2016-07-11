@@ -9,18 +9,16 @@
     margin-left:5%;
 	border-radius:50%;
 }
-#cropped340SizeImage{
-	width:340px;
-	height:320px;
-}
-#cropped680SizeImage{
-	width:680px;
-	height:480px;
-}
 #selectShape{
     margin-left: 5%;
     margin-top: 3%;
 }
 #selectImage{
     margin-left: -2%;
+}
+.cropArea {
+     background: #E4E4E4;
+    overflow: hidden;
+    width: 305px;
+    height: 190px;
 }
